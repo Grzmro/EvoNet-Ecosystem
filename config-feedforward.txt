@@ -1,0 +1,96 @@
+# Konfiguracja NEAT dla sieci feedforward sterujacej agentami-zbieraczami.
+# Uwaga krytyczna: liczba wejsc i wyjsc musi zgadzac sie z kodem.
+
+[NEAT]
+# Jak wyznaczac "najlepszego" osobnika do porownania fitness.
+fitness_criterion = max
+# Po przekroczeniu tego fitness trening moze zostac zakonczony wczesniej.
+fitness_threshold = 350
+# Rozmiar populacji w jednej generacji.
+pop_size = 70
+# Wymagane w nowszych wersjach neat-python.
+# False = trening moze zakonczyc sie po osiagnieciu fitness_threshold.
+no_fitness_termination = False
+# Czy resetowac populacje po calkowitym wymarciu gatunkow.
+reset_on_extinction = False
+
+[DefaultGenome]
+# Funkcja aktywacji neuronow. tanh daje stabilny sygnal w zakresie [-1, 1].
+activation_default      = tanh
+activation_mutate_rate  = 0.0
+activation_options      = tanh
+
+# Sposob agregacji sygnalow wejsciowych neuronu.
+aggregation_default     = sum
+aggregation_mutate_rate = 0.0
+aggregation_options     = sum
+
+# Parametry bias neuronow.
+bias_init_mean          = 0.0
+bias_init_stdev         = 1.0
+bias_max_value          = 30.0
+bias_min_value          = -30.0
+bias_mutate_power       = 0.5
+bias_mutate_rate        = 0.7
+bias_replace_rate       = 0.1
+
+# Wspolczynniki zgodnosci genomow (specjacja).
+compatibility_disjoint_coefficient = 1.0
+compatibility_weight_coefficient   = 0.5
+
+# Mutacje polaczen.
+conn_add_prob           = 0.5
+conn_delete_prob        = 0.3
+
+# Czy gen polaczenia jest wlaczony domyslnie i jak czesto mutuje.
+enabled_default         = True
+enabled_mutate_rate     = 0.01
+
+# Wymusza siec bez cykli (klasyczna siec feedforward).
+feed_forward            = True
+# Pelne polaczenie wejsc -> wyjsc na starcie, bez warstwy ukrytej.
+initial_connection      = full_direct
+
+# Mutacje struktury sieci (dodawanie/usuwanie neuronow).
+node_add_prob           = 0.2
+node_delete_prob        = 0.2
+
+# Kluczowe dopasowanie do zadania.
+num_hidden              = 0
+num_inputs              = 3
+num_outputs             = 2
+
+# Parametry odpowiedzi neuronu (zostawione stabilnie).
+response_init_mean      = 1.0
+response_init_stdev     = 0.0
+response_max_value      = 30.0
+response_min_value      = -30.0
+response_mutate_power   = 0.0
+response_mutate_rate    = 0.0
+response_replace_rate   = 0.0
+
+# Parametry wag polaczen.
+weight_init_mean        = 0.0
+weight_init_stdev       = 1.0
+weight_max_value        = 30.0
+weight_min_value        = -30.0
+weight_mutate_power     = 0.5
+weight_mutate_rate      = 0.8
+weight_replace_rate     = 0.1
+
+[DefaultSpeciesSet]
+# Im mniejszy prog, tym latwiej o wiecej gatunkow.
+compatibility_threshold = 3.0
+
+[DefaultStagnation]
+species_fitness_func = max
+# Ile generacji gatunek moze nie robic postepu.
+max_stagnation       = 15
+# Ile najlepszych gatunkow chronimy przed usunieciem.
+species_elitism      = 2
+
+[DefaultReproduction]
+# Elita kopiowana bez zmian do kolejnej generacji.
+elitism            = 2
+# Odsetek osobnikow danego gatunku dopuszczonych do rozrodu.
+survival_threshold = 0.2
