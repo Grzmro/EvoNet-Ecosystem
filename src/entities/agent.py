@@ -1,5 +1,4 @@
 import math
-
 import pygame
 
 from src.core.settings import (

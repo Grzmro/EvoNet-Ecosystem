@@ -177,3 +177,18 @@ class NumericInput:
         text_surface = font.render(shown, True, COLOR_TEXT)
         text_y = self.rect.y + (self.rect.height - text_surface.get_height()) // 2
         surface.blit(text_surface, (self.rect.x + 8, text_y))
+
+
+class ReadOnlyValue:
+    def __init__(self, rect, value):
+        self.rect = pygame.Rect(rect)
+        self.value = value
+
+    def draw(self, surface, font):
+        bg = (245, 246, 249)
+        pygame.draw.rect(surface, bg, self.rect, border_radius=5)
+        pygame.draw.rect(surface, COLOR_BORDER, self.rect, 1, border_radius=5)
+
+        text_surface = font.render(str(self.value), True, COLOR_TEXT)
+        text_y = self.rect.y + (self.rect.height - text_surface.get_height()) // 2
+        surface.blit(text_surface, (self.rect.x + 8, text_y))

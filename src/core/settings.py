@@ -50,3 +50,21 @@ class RuntimeParams:
 	@property
 	def eat_distance(self) -> float:
 		return AGENT_SIZE + FOOD_RADIUS + 2
+
+
+# Tryby działania
+REPLAY_MODE = False
+HEADLESS_MODE = False
+
+# Checkpointy
+ENABLE_CHECKPOINTS = True
+CHECKPOINT_PREFIX = "checkpoint-gen-"
+CHECKPOINT_EVERY_N_GENS = 5
+
+# Trening
+MAX_TRAINING_GENERATIONS = 0
+RENDER_EVERY_N_GENS = 5
+
+# Ścieżki
+REPLAY_GENOME_PATH = "models/best_genome.pkl"
+CHECKPOINTS_DIR = "checkpoints"
