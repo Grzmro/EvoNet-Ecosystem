@@ -56,7 +56,7 @@ class Agent:
                 
         if closest_zone:
             # Znormalizowany dystans (0 to środek ekranu w przybliżeniu)
-            max_screen_dist = math.hypot(settings.WINDOW_WIDTH, settings.WINDOW_HEIGHT)
+            max_screen_dist = math.hypot(settings.WORLD_WIDTH, settings.WINDOW_HEIGHT)
             norm_dist = min_dist / max_screen_dist
             
             direction = closest_zone.pos - self.pos
@@ -133,8 +133,8 @@ class Agent:
         if self.pos.x <= 0:
             self.pos.x = 0
             self.vel.x *= -1
-        elif self.pos.x >= settings.WINDOW_WIDTH:
-            self.pos.x = settings.WINDOW_WIDTH
+        elif self.pos.x >= settings.WORLD_WIDTH:
+            self.pos.x = settings.WORLD_WIDTH
             self.vel.x *= -1
             
         if self.pos.y <= 0:

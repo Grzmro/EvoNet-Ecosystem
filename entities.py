@@ -23,7 +23,7 @@ class Guru:
             wave.radius += settings.WAVE_SPEED
             
         # Remove waves that are off-screen (approximate)
-        max_dist = math.hypot(settings.WINDOW_WIDTH, settings.WINDOW_HEIGHT)
+        max_dist = math.hypot(settings.WORLD_WIDTH, settings.WINDOW_HEIGHT)
         self.waves = [w for w in self.waves if w.radius < max_dist]
         
         # Emit new waves
@@ -76,7 +76,7 @@ class InvestmentZone:
         self.age = 0
         self.crashed = False
         # Move to a new random location to prevent camping
-        self.pos = Vector2(random.randint(100, settings.WINDOW_WIDTH - 100), 
+        self.pos = Vector2(random.randint(100, settings.WORLD_WIDTH - 100), 
                            random.randint(100, settings.WINDOW_HEIGHT - 100))
                            
     def get_color(self):
