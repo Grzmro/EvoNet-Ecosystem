@@ -5,12 +5,12 @@
 # Jak wyznaczac "najlepszego" osobnika do porownania fitness.
 fitness_criterion = max
 # Po przekroczeniu tego fitness trening moze zostac zakonczony wczesniej.
-fitness_threshold = 350
+fitness_threshold = 99999
 # Rozmiar populacji w jednej generacji.
-pop_size = 70
+pop_size = 200
 # Wymagane w nowszych wersjach neat-python.
 # False = trening moze zakonczyc sie po osiagnieciu fitness_threshold.
-no_fitness_termination = False
+no_fitness_termination = True
 # Czy resetowac populacje po calkowitym wymarciu gatunkow.
 reset_on_extinction = False
 
@@ -38,27 +38,28 @@ bias_replace_rate       = 0.1
 compatibility_disjoint_coefficient = 1.0
 compatibility_weight_coefficient   = 0.5
 
-# Mutacje polaczen.
-conn_add_prob           = 0.5
-conn_delete_prob        = 0.3
+# Mutacje polaczen (podwyzszone dla szybszego budowania topologii).
+conn_add_prob           = 0.6
+conn_delete_prob        = 0.2
 
 # Czy gen polaczenia jest wlaczony domyslnie i jak czesto mutuje.
 enabled_default         = True
 enabled_mutate_rate     = 0.01
 
-# Wymusza siec bez cykli (klasyczna siec feedforward).
-feed_forward            = True
+# Siec rekurencyjna (agent ma pamiec krotkoterminowa - wazne dla strategii rynkowych).
+feed_forward            = False
 # Pelne polaczenie wejsc -> wyjsc na starcie, bez warstwy ukrytej.
 initial_connection      = full_direct
 
-# Mutacje struktury sieci (dodawanie/usuwanie neuronow).
-node_add_prob           = 0.2
-node_delete_prob        = 0.2
+# Mutacje struktury sieci (podwyzszone — siec musi budowac warstwy ukryte).
+node_add_prob           = 0.3
+node_delete_prob        = 0.1
 
 # Kluczowe dopasowanie do zadania.
-num_hidden              = 0
-num_inputs              = 6
-num_outputs             = 3
+# 4 startowe neurony ukryte daja sieci nieliniowosc od samego poczatku.
+num_hidden              = 4
+num_inputs              = 10
+num_outputs             = 4
 
 # Parametry odpowiedzi neuronu (zostawione stabilnie).
 response_init_mean      = 1.0
@@ -80,17 +81,20 @@ weight_replace_rate     = 0.1
 
 [DefaultSpeciesSet]
 # Im mniejszy prog, tym latwiej o wiecej gatunkow.
+# Wyzszy = mniej gatunkow = stabilniejsza populacja
 compatibility_threshold = 3.0
 
 [DefaultStagnation]
 species_fitness_func = max
-# Ile generacji gatunek moze nie robic postepu.
-max_stagnation       = 15
+# Ile generacji gatunek moze nie robic postepu (wyzsze = cierpliwsze, wazne przy losowym rynku).
+max_stagnation       = 25
 # Ile najlepszych gatunkow chronimy przed usunieciem.
-species_elitism      = 2
+species_elitism      = 3
 
 [DefaultReproduction]
 # Elita kopiowana bez zmian do kolejnej generacji.
-elitism            = 2
+elitism            = 3
 # Odsetek osobnikow danego gatunku dopuszczonych do rozrodu.
-survival_threshold = 0.2
+survival_threshold = 0.25
+# Minimalny rozmiar gatunku (niska wartosc = wiecej gatunkow moze wspolistniec)
+min_species_size   = 2
