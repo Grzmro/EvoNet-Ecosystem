@@ -1,2 +1,8 @@
+# Rdzeń symulacji i ewolucji
 pygame>=2.5.2
 neat-python>=0.92
+
+# Wizualizacja wyników (visualize_results.py)
+pandas>=2.0
+matplotlib>=3.7
+networkx>=3.0
